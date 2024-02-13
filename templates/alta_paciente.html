@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href={% url "inicio" %}>inicio</a>
+        <a href={% url "alta_paciente" %}>alta paciente</a>
+        <a href={% url "pacientes" %}>pacientes</a>
+    </nav>
+    <h1>alta de paciente</h1>
+    <form action={% url "alta_paciente" %} method="POST">
+        {% csrf_token %}
+      {%comment%}
+      <p>
+        NOMBRE
+        <input type="text" name="nombre">
+      </p>
+      <p>
+        APELLIDO
+        <input type="text" name="apellido">
+      </p>
+      <p>
+        EDAD
+        <input type="number" name="edad">
+      </p>
+      <p>
+        INSULINATERAPIA
+        <input type="checkbox" name="insulinoterapia">
+      </p>{%{% endcomment %}
+      <table>
+        {{formulario}}
+      </table>
+      <input type="submit" value="alta paciente">
+    </form>
+</body>
+</html>

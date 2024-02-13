@@ -11,6 +11,17 @@
         <a href={% url "alta_paciente" %}>alta paciente</a>
         <a href={% url "pacientes" %}>pacientes</a>
     </nav>
-    <h1>reordenando la primera chamba.....</h1>
+    <h1>listado de pacientes</h1>
+    <p>
+    <ul>
+        {%for pacientes in pacientes%}
+          {% if pacientes.glucemia > 110%}
+            <li style="color:red">{{pacientes}}</li>
+          {% else %}
+            <li style="color:green">{{pacientes}}</li>
+          {% endif %}
+        {% endfor %}
+    </ul>
+    </p>
 </body>
 </html>
