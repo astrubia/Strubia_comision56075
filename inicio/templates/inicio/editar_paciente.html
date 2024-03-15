@@ -1,0 +1,15 @@
+{% extends "padre.html" %}
+{% block header %}
+<h1>editar paciente {{pacientes.id}} </h1>
+{% endblock header %}
+
+{% block main %}
+
+    <form action={% url "editar_paciente" paciente.id %} method="POST">
+        {% csrf_token %}
+      <table>
+        {{formulario}}
+      </table>
+      <input type="submit" value="editar paciente">
+    </form>
+{% endblock main %}

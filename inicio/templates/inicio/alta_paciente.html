@@ -1,0 +1,14 @@
+{% extends "padre.html" %}
+{% block header %}
+<h1>alta de paciente</h1>
+{% endblock header %}
+{% block main %}
+
+    <form action={% url "alta_paciente" %} method="POST">
+        {% csrf_token %}
+      <table>
+        {{formulario}}
+      </table>
+      <input type="submit" value="alta paciente">
+    </form>
+{% endblock main %}

@@ -1,0 +1,23 @@
+{% extends "padre.html"%}
+{% block h1_header %}
+listado de pacientes
+{% endblock h1_header %}
+{% block main %}
+<a href={% url "alta_paciente" %}>alta paciente</a>
+    <form action={% url "pacientes" %}>
+      {{formulario}}
+      <input type="submit" value="buscar">
+    </form>
+    {% if pacientes %}
+    <ul>
+        {%for pacientes in pacientes%}
+          <li>{{pacientes}}| 
+            <a href={% url "ver_paciente" pacientes.id %}>ver </a> | 
+            <a href={% url "eliminar_paciente" pacientes.id %}>eliminar </a> |
+            <a href={% url "editar_paciente" pacientes.id %}>editar </a>| </li>
+        {% endfor %}
+    </ul>
+    {%else%}
+    <p>No se encontraron pacientes cargados!</p>
+    {%endif%}
+{% endblock main %}

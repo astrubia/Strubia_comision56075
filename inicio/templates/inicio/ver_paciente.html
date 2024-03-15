@@ -1,0 +1,12 @@
+{% extends "padre.html"%}
+{% block h1_header %}
+Datos del paciente {{paciente.id}}
+{% endblock h1_header %}
+{% block main %}
+<ul>
+<li>nombre: {{paciente.nombre}} </li>
+<li>apellido: {{paciente.apellido}} </li>
+<li>edad: {{paciente.edad}} </li>
+<li>glucemia: {{paciente.glucemia}}</li>
+</ul>
+{% endblock main %}
