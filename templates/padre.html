@@ -22,7 +22,17 @@
             <div class="container">
                 <a class="navbar-brand" href={% url "inicio" %}>inicio</a>
                 <a class="navbar-brand" href={% url "pacientes" %}>pacientes</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="navbar-brand" href={% url "turnos" %}>turnos</a>
+                {% if request.user.is_authenticated %}
+                <a class="navbar-brand" href={% url "perfil" %}>{{request.user.username}}</a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+                {% else %}
+                <a class="btn btn-success" href={% url "registro" %}>Registrarse</a>
+                <a class="btn btn-primary" href={% url "login" %}>Login</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
@@ -35,7 +45,7 @@
                             <!-- Page heading-->
                             <h1 class="mb-5">
                                {% block h1_header %}
-                               base 
+                               Bienvenidos
                                {% endblock h1_header %} 
                             </h1>
                         </div>

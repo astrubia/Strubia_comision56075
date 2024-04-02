@@ -1,0 +1,15 @@
+{% extends "padre.html" %}
+{% block header %}
+<h1>crear turno</h1>
+{% endblock header %}
+{% block main %}
+
+    <form action={% url "crear_turno" %} method="POST">
+        {% csrf_token %}
+      <table>
+        {{form.media}}
+        {{form}}
+      </table>
+      <input type="submit" value="crear turno">
+    </form>
+{% endblock main %}

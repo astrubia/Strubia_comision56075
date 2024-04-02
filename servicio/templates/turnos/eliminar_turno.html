@@ -1,0 +1,12 @@
+{% extends "padre.html" %}
+{% block header %}
+<h1>Eliminar turno</h1>
+{% endblock header %}
+{% block main %}
+
+    <form action={% url "Eliminar_turno" turno.id %} method="POST">
+        {% csrf_token %}
+      <p>Confirma la suspension de su turno?</p>
+      <input type="submit" value="Confirmar">
+    </form>
+{% endblock main %}

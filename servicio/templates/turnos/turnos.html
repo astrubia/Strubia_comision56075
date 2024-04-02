@@ -1,0 +1,26 @@
+{% extends "padre.html"%}
+{% block h1_header %}
+listado de turnos
+{% endblock h1_header %}
+{% block main %}
+<a href={% url "crear_turno" %}>crear turno</a>
+{% comment%}
+    <form action={% url "pacientes" %}>
+      {{formulario}}
+      <input type="submit" value="buscar">
+    </form>
+    {% endcomment%}
+    {% if turno %}
+    <ul>
+        {%for turno in turno%}
+          <li>{{turno}}| 
+            <a href={% url "Detalle_turno" turno.id %}>detalle </a> | 
+            <a href={% url "Eliminar_turno" turno.id %}>eliminar </a> |
+            <a href={% url "Editar_turno" turno.id %}>editar </a>| 
+            </li>
+        {% endfor %}
+    </ul>
+    {%else%}
+    <p>No se encontraron turnos cargados!</p>
+    {%endif%}
+{% endblock main %}

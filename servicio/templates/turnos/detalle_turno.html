@@ -1,0 +1,12 @@
+{% extends "padre.html"%}
+{% block h1_header %}
+Detalle del {{turno}}
+{% endblock h1_header %}
+{% block main %}
+<ul>
+    <li>tipo: {{turno.tipo}}</li>
+    <li>requerimiento: {{turno.requerimiento}}</li>
+    <li>fecha turno: {{turno.fecha_turno}}</li>
+    <li>descripcion: {{turno.descripcion | safe}}</li>
+</ul>
+{% endblock main %}
