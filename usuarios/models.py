@@ -6,6 +6,6 @@ class DatosExtras(models.Model):
     avatar = models.ImageField(upload_to='avatares', null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return f'Datos extras de {self.user.username}'
 
 

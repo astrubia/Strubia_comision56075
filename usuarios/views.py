@@ -3,7 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from usuarios.forms import CrearUsuario, EditarPerfil, DatosExtrasUpdateForm
+from usuarios.forms import CrearUsuario, EditarPerfil
+from usuarios.models import DatosExtras
 
 def login(request):
     formulario = AuthenticationForm()
@@ -37,27 +38,24 @@ def perfil(request):
 
 def editar_perfil(request):
     
+    user = request.user
+    datos_extra, _ = DatosExtras.objects.get_or_create(user=user)
+    
     if request.method == 'POST':
-        formulario = EditarPerfil(request.POST, instance=request.user)
+        formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
+            avatar = formulario.cleaned_data.get('avatar')
+            if avatar:
+                datos_extra.avatar = avatar
+            
+            datos_extra.save()
             formulario.save()
             return redirect('perfil')
     else:
-        formulario = EditarPerfil(instance=request.user)
+        formulario = EditarPerfil(initial={'avatar': datos_extra.avatar}, instance=request.user)
     
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
 
 class EditarContrasenia(PasswordChangeView):
     template_name = "usuarios/cambiar_contrasenia.html"
     success_url = reverse_lazy('perfil')
-
-
-def update_datos_extras(request):
-    if request.method == 'POST':
-        form = DatosExtrasUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            return redirect('Datos Extras') 
-    else:
-        form = DatosExtrasUpdateForm(instance=request.user.profile)
-    return render(request, 'editar_perfil.html', {'form': form})

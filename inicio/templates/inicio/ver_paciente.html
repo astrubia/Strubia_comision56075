@@ -9,5 +9,6 @@ Datos del paciente {{paciente.id}}
 <li>edad: {{paciente.edad}} </li>
 <li>glucemia: {{paciente.glucemia}}</li>
 <li>descripcion: {{paciente.descripcion | safe}} </li>
+<li>imagen:<img src="{{paciente.imagen.url}}" width="200" height="200"></li>
 </ul>
 {% endblock main %}

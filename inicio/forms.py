@@ -7,6 +7,7 @@ class FormularioBasePaciente(forms.Form):
     edad = forms.IntegerField()
     insulinoterapia= forms.BooleanField()
     descripcion = RichTextFormField()
+    imagen = forms.ImageField()
     
 class FormularioAltaPaciente(FormularioBasePaciente):
     pass

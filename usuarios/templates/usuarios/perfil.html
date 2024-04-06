@@ -7,6 +7,7 @@ Perfil de {{request.user}}
     <li>nombre: {{request.user.first_name}}</li>
     <li>apellido: {{request.user.last_name}}</li>
     <li>email: {{request.user.email}}</li>
+    <li>avatar: <img src={{request.user.datosextra.avatar.url}} alt"avatar"</li>
 </ul>
 <a class='btn btn-secondary' href= {% url "editar_perfil" %}>Editar perfil</a>
 <a class='btn btn-secondary' href= {% url "cambiar_contrasenia" %}>Cambiar contrasenia</a>

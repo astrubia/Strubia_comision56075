@@ -21,7 +21,7 @@ def pacientes(request):
 def alta_paciente(request):
     formulario = FormularioAltaPaciente()
     if request.method == 'POST':
-        formulario = FormularioAltaPaciente(request.POST)
+        formulario = FormularioAltaPaciente(request.POST, request.FILES)
         if formulario.is_valid():
             nombre = formulario.cleaned_data.get('nombre')
             apellido = formulario.cleaned_data.get('apellido')
@@ -29,8 +29,9 @@ def alta_paciente(request):
             glucemia = ramdon.randint(50, 400)
             insulinoterapia = formulario.cleaned_data.get('insulinoterapia')
             descripcion = formulario.cleaned_data.get('descripcion')
-    
-            paciente = Paciente(nombre=nombre, apellido=apellido, edad=edad, glucemia=glucemia, insulinoterapia=insulinoterapia, descripcion=descripcion)
+            imagen = formulario.cleaned_data.get('imagen')
+            
+            paciente = Paciente(nombre=nombre, apellido=apellido, edad=edad, glucemia=glucemia, insulinoterapia=insulinoterapia, descripcion=descripcion, imagen=imagen)
             paciente.save()
         return redirect('pacientes')
     return render(request, 'inicio/alta_paciente.html',{"formulario": formulario})

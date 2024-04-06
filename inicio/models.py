@@ -8,6 +8,7 @@ class Paciente(models.Model):
     glucemia = models.IntegerField()
     insulinoterapia = models.BooleanField(default=False)
     descripcion = RichTextField(null=True)
+    imagen = models.ImageField(upload_to='pacientes', null=True, blank=True)
     def __str__(self):
         return f"{self.nombre} {self.apellido} {self.edad} - {self.glucemia} - {self.insulinoterapia}"
     
